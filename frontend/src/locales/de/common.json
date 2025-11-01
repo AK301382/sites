@@ -1,0 +1,21 @@
+{
+  "common": {
+    "loading": "Lädt...",
+    "noData": "Keine Daten verfügbar",
+    "search": "Suchen...",
+    "filter": "Filtern",
+    "actions": "Aktionen",
+    "yes": "Ja",
+    "no": "Nein",
+    "close": "Schließen",
+    "languageSwitcher": "Sprache wechseln"
+  },
+  "nav": {
+    "home": "Startseite",
+    "services": "Dienstleistungen",
+    "gallery": "Galerie",
+    "about": "Über uns",
+    "booking": "Buchung",
+    "contact": "Kontakt"
+  }
+}

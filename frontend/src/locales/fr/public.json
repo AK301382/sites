@@ -1,0 +1,145 @@
+{
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous serions ravis d'avoir de vos nouvelles. Envoyez-nous un message et nous vous répondrons dans les plus brefs délais.",
+    "formTitle": "Envoyez-nous un message",
+    "name": "Votre nom",
+    "namePlaceholder": "Jean Dupont",
+    "email": "Adresse e-mail",
+    "emailPlaceholder": "jean@exemple.ch",
+    "phone": "Numéro de téléphone",
+    "phonePlaceholder": "+41 44 123 45 67",
+    "message": "Votre message",
+    "messagePlaceholder": "Dites-nous comment nous pouvons vous aider...",
+    "sendButton": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "successTitle": "Message envoyé!",
+    "successMessage": "Merci de nous avoir contactés. Nous vous répondrons sous peu.",
+    "errorMessage": "Échec de l'envoi du message. Veuillez réessayer.",
+    "locationTitle": "Visitez notre salon",
+    "hoursTitle": "Heures d'ouverture",
+    "followTitle": "Suivez-nous",
+    "callUs": "Appelez-nous",
+    "emailUs": "Envoyez-nous un e-mail",
+    "required": "Ce champ est requis",
+    "invalidEmail": "Veuillez entrer une adresse e-mail valide"
+  },
+  "hero": {
+    "title": "Fabulous Nails & Spa",
+    "subtitle": "Où les ongles deviennent de l'art",
+    "bookButton": "Réserver",
+    "viewWork": "Voir nos créations"
+  },
+  "quickBooking": {
+    "title": "Votre prochaine manucure en 3 clics",
+    "selectService": "Choisir un service",
+    "chooseDate": "Choisir la date",
+    "bookNow": "Réserver maintenant",
+    "callUs": "Appelez-nous"
+  },
+  "booking": {
+    "title": "Réserver un rendez-vous",
+    "selectService": "Choisir un service",
+    "selectArtist": "Choisir un nail artist",
+    "selectDate": "Choisir la date",
+    "selectTime": "Choisir l'heure",
+    "yourInfo": "Vos informations",
+    "name": "Nom",
+    "email": "Email",
+    "phone": "Téléphone",
+    "notes": "Notes",
+    "confirmBooking": "Confirmer la réservation",
+    "bookingSuccess": "Réservation réussie!",
+    "bookingMessage": "Nous avons reçu votre demande de réservation. Vous recevrez un email de confirmation sous peu."
+  },
+  "services": {
+    "title": "Nos Services",
+    "viewAll": "Voir tous les services",
+    "duration": "Durée",
+    "minutes": "minutes",
+    "bookService": "Réserver ce service"
+  },
+  "gallery": {
+    "title": "Galerie de Nail Art",
+    "filter": "Filtrer par",
+    "allStyles": "Tous les styles",
+    "allColors": "Toutes les couleurs",
+    "viewMore": "Voir plus"
+  },
+  "artists": {
+    "title": "Nos Nail Artists",
+    "yearsExp": "ans d'expérience",
+    "bookWith": "Réserver avec"
+  },
+  "about": {
+    "title": "À propos de nous",
+    "subtitle": "Excellence en nail art depuis 2009",
+    "heroDescription": "Où la passion pour l'art des ongles rencontre un service exceptionnel au cœur de Zurich",
+    "stat1": "Années d'Excellence",
+    "stat2": "Clients Satisfaits",
+    "stat3": "Note Moyenne",
+    "stat4": "Services Réalisés",
+    "valuesSubheading": "Ce que nous représentons",
+    "valuesPrinciple": "Ces principes fondamentaux guident chaque service que nous fournissons et chaque interaction que nous avons",
+    "whyChooseSubheading": "Votre Meilleur Choix",
+    "storyTitle": "Notre Histoire",
+    "storyText": "Fabulous Nails & Spa est né d'une passion pour l'art des ongles et d'une vision de créer un sanctuaire où la beauté rencontre la détente. Depuis l'ouverture de nos portes en 2009 au cœur de Zurich, nous nous sommes consacrés à fournir des services de soins des ongles exceptionnels dans un environnement élégant et accueillant. Notre voyage a commencé avec une mission simple : élever l'expérience du salon de manucure en combinant excellence artistique, produits premium et soins personnalisés. Aujourd'hui, nous sommes fiers d'être l'une des destinations d'ongles les plus fiables de Zurich, servant des milliers de clients satisfaits qui reviennent encore et encore pour notre mélange unique d'artisanat, de professionnalisme et d'hospitalité chaleureuse.",
+    "missionTitle": "Notre Mission",
+    "missionText": "Notre mission est de fournir des expériences de soins des ongles exceptionnelles qui dépassent les attentes. Nous croyons que chaque visite devrait être un moment d'indulgence, de créativité et d'expression personnelle. En utilisant uniquement les meilleurs produits, en maintenant les normes d'hygiène les plus élevées et en nous formant continuellement aux dernières techniques, nous nous assurons que chaque client repart non seulement avec de beaux ongles, mais aussi avec une confiance renouvelée et un sourire. Nous nous engageons à créer un espace accueillant où chacun se sent valorisé, choyé et inspiré à exprimer son style unique.",
+    "valuesTitle": "Nos Valeurs Fondamentales",
+    "value1Title": "Excellence",
+    "value1Text": "Nous recherchons la perfection dans chaque détail, de la technique au service client, garantissant des résultats exceptionnels à chaque fois.",
+    "value2Title": "Hygiène & Sécurité",
+    "value2Text": "Votre santé est notre priorité. Nous suivons des protocoles d'hygiène stricts et utilisons des outils stérilisés pour chaque service.",
+    "value3Title": "Créativité",
+    "value3Text": "Nous célébrons l'expression artistique et restons à l'avant-garde des tendances du nail art pour vous apporter les designs les plus récents et les plus époustouflants.",
+    "value4Title": "Soin Client",
+    "value4Text": "Votre satisfaction motive tout ce que nous faisons. Nous écoutons, comprenons et adaptons nos services à vos besoins uniques.",
+    "teamTitle": "Rencontrez Notre Équipe d'Experts",
+    "teamText": "Notre équipe talentueuse de techniciens en ongles certifiés apporte des années d'expérience et une passion pour l'art des ongles. Chaque membre se consacre à l'apprentissage continu et à la maîtrise des dernières techniques pour vous fournir des services d'ongles de pointe. Nous sommes fiers de notre approche amicale et professionnelle et de notre capacité à réaliser vos rêves d'ongles.",
+    "locationTitle": "Visitez-nous",
+    "locationAddress": "Bahnhofstrasse 123, 8001 Zurich, Suisse",
+    "locationHours": "Lundi-Vendredi: 9h00 - 19h00, Samedi: 9h00 - 17h00, Dimanche: 10h00 - 16h00",
+    "whyChooseTitle": "Pourquoi choisir Fabulous Nails & Spa",
+    "whyReason1": "🏆 Plus de 15 ans d'excellence en nail art",
+    "whyReason2": "💅 Techniciens certifiés et hautement qualifiés",
+    "whyReason3": "✨ Produits premium, écologiques et végans",
+    "whyReason4": "🧼 Normes d'hygiène et de stérilisation les plus élevées",
+    "whyReason5": "🎨 Consultations personnalisées de nail art et design",
+    "whyReason6": "💖 Des milliers de clients satisfaits et avis 5 étoiles",
+    "whyReason7": "🌿 Atmosphère spa relaxante avec attention aux détails",
+    "whyReason8": "📅 Horaires flexibles et réservation en ligne"
+  },
+  "whyChooseUs": {
+    "title": "Pourquoi nous choisir",
+    "feature1": {
+      "title": "Expérience Premium",
+      "desc": "Service de luxe avec les meilleurs produits et attention à chaque détail"
+    },
+    "feature2": {
+      "title": "Excellence Éprouvée",
+      "desc": "Des années de service exceptionnel et des milliers de clients satisfaits"
+    },
+    "feature3": {
+      "title": "Vegan & Écologique",
+      "desc": "Vernis sans cruauté et pratiques durables pour une beauté consciente"
+    },
+    "feature4": {
+      "title": "Expertise Artistique",
+      "desc": "Techniciens certifiés formés aux dernières tendances et techniques"
+    },
+    "feature5": {
+      "title": "Soins Personnalisés",
+      "desc": "Traitements sur mesure et consultations pour votre style unique"
+    },
+    "feature6": {
+      "title": "Bilan Exceptionnel",
+      "desc": "Plus de 15 ans d'excellence en nail art avec un service primé"
+    }
+  },
+  "footer": {
+    "hours": "Heures d'ouverture",
+    "contact": "Contact",
+    "follow": "Suivez-nous"
+  }
+}

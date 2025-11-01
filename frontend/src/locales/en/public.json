@@ -1,0 +1,145 @@
+{
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We would love to hear from you. Send us a message and we will respond as soon as possible.",
+    "formTitle": "Send us a Message",
+    "name": "Your Name",
+    "namePlaceholder": "John Doe",
+    "email": "Email Address",
+    "emailPlaceholder": "john@example.com",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+41 44 123 45 67",
+    "message": "Your Message",
+    "messagePlaceholder": "Tell us how we can help you...",
+    "sendButton": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Message Sent!",
+    "successMessage": "Thank you for contacting us. We will get back to you shortly.",
+    "errorMessage": "Failed to send message. Please try again.",
+    "locationTitle": "Visit Our Salon",
+    "hoursTitle": "Opening Hours",
+    "followTitle": "Follow Us",
+    "callUs": "Call Us",
+    "emailUs": "Email Us",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address"
+  },
+  "hero": {
+    "title": "Fabulous Nails & Spa",
+    "subtitle": "Where nails become art",
+    "bookButton": "Book Your Appointment",
+    "viewWork": "View Our Work"
+  },
+  "quickBooking": {
+    "title": "Your next manicure in 3 clicks",
+    "selectService": "Select service",
+    "chooseDate": "Choose date",
+    "bookNow": "Book Now",
+    "callUs": "Call us"
+  },
+  "booking": {
+    "title": "Book Appointment",
+    "selectService": "Select Service",
+    "selectArtist": "Select Nail Artist",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "yourInfo": "Your Information",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "notes": "Notes",
+    "confirmBooking": "Confirm Booking",
+    "bookingSuccess": "Booking Successful!",
+    "bookingMessage": "We have received your booking request. You will receive a confirmation email shortly."
+  },
+  "services": {
+    "title": "Our Services",
+    "viewAll": "View All Services",
+    "duration": "Duration",
+    "minutes": "minutes",
+    "bookService": "Book This Service"
+  },
+  "gallery": {
+    "title": "Nail Art Gallery",
+    "filter": "Filter by",
+    "allStyles": "All Styles",
+    "allColors": "All Colors",
+    "viewMore": "View More"
+  },
+  "artists": {
+    "title": "Our Nail Artists",
+    "yearsExp": "years experience",
+    "bookWith": "Book with"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Excellence in Nail Artistry Since 2009",
+    "heroDescription": "Where passion for nail artistry meets exceptional service in the heart of Zürich",
+    "stat1": "Years of Excellence",
+    "stat2": "Happy Clients",
+    "stat3": "Average Rating",
+    "stat4": "Services Completed",
+    "valuesSubheading": "What We Stand For",
+    "valuesPrinciple": "These core principles guide every service we provide and every interaction we have",
+    "whyChooseSubheading": "Your Best Choice",
+    "storyTitle": "Our Story",
+    "storyText": "Fabulous Nails & Spa was born from a passion for nail artistry and a vision to create a sanctuary where beauty meets relaxation. Since opening our doors in 2009 in the heart of Zürich, we have been dedicated to providing exceptional nail care services in an elegant and welcoming environment. Our journey began with a simple mission: to elevate the nail salon experience by combining artistic excellence, premium products, and personalized care. Today, we are proud to be one of Zürich's most trusted nail destinations, serving thousands of satisfied clients who return time and again for our signature blend of artistry, professionalism, and warm hospitality.",
+    "missionTitle": "Our Mission",
+    "missionText": "Our mission is to deliver exceptional nail care experiences that go beyond expectations. We believe that every visit should be a moment of indulgence, creativity, and personal expression. By using only the finest products, maintaining the highest hygiene standards, and continuously training in the latest techniques, we ensure that each client leaves not just with beautiful nails, but with renewed confidence and a smile. We are committed to creating a welcoming space where everyone feels valued, pampered, and inspired to express their unique style.",
+    "valuesTitle": "Our Core Values",
+    "value1Title": "Excellence",
+    "value1Text": "We pursue perfection in every detail, from technique to customer service, ensuring exceptional results every time.",
+    "value2Title": "Hygiene & Safety",
+    "value2Text": "Your health is our priority. We follow strict sanitation protocols and use sterilized tools for every service.",
+    "value3Title": "Creativity",
+    "value3Text": "We celebrate artistic expression and stay ahead of nail art trends to bring you the latest and most stunning designs.",
+    "value4Title": "Client Care",
+    "value4Text": "Your satisfaction drives everything we do. We listen, understand, and tailor our services to your unique needs.",
+    "teamTitle": "Meet Our Expert Team",
+    "teamText": "Our talented team of certified nail technicians brings years of experience and a passion for nail artistry. Each member is dedicated to continuous learning and mastering the latest techniques to provide you with cutting-edge nail services. We take pride in our friendly, professional approach and our ability to turn your nail dreams into reality.",
+    "locationTitle": "Visit Us",
+    "locationAddress": "Bahnhofstrasse 123, 8001 Zürich, Switzerland",
+    "locationHours": "Monday-Friday: 9:00 AM - 7:00 PM, Saturday: 9:00 AM - 5:00 PM, Sunday: 10:00 AM - 4:00 PM",
+    "whyChooseTitle": "Why Choose Fabulous Nails & Spa",
+    "whyReason1": "🏆 Over 15 years of excellence in nail artistry",
+    "whyReason2": "💅 Certified and highly trained nail technicians",
+    "whyReason3": "✨ Premium, eco-friendly, and vegan products",
+    "whyReason4": "🧼 Highest hygiene and sterilization standards",
+    "whyReason5": "🎨 Personalized nail art and design consultations",
+    "whyReason6": "💖 Thousands of satisfied clients and 5-star reviews",
+    "whyReason7": "🌿 Relaxing spa atmosphere with attention to detail",
+    "whyReason8": "📅 Flexible scheduling and online booking"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Us",
+    "feature1": {
+      "title": "Premium Experience",
+      "desc": "Luxury service with the finest products and attention to every detail"
+    },
+    "feature2": {
+      "title": "Proven Excellence",
+      "desc": "Years of outstanding service and thousands of satisfied customers"
+    },
+    "feature3": {
+      "title": "Vegan & Eco-Friendly",
+      "desc": "Cruelty-free polishes and sustainable practices for conscious beauty"
+    },
+    "feature4": {
+      "title": "Expert Artistry",
+      "desc": "Certified nail technicians trained in the latest trends and techniques"
+    },
+    "feature5": {
+      "title": "Personalized Care",
+      "desc": "Tailored treatments and consultations to match your unique style"
+    },
+    "feature6": {
+      "title": "Outstanding Track Record",
+      "desc": "Over 15 years of excellence in nail artistry with award-winning service"
+    }
+  },
+  "footer": {
+    "hours": "Opening Hours",
+    "contact": "Contact",
+    "follow": "Follow Us"
+  }
+}
