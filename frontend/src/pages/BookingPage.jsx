@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback, memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
@@ -10,14 +11,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Calendar } from '../components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popover';
 import { toast } from 'sonner';
-import { Calendar as CalendarIcon, CheckCircle2 } from 'lucide-react';
+import { Calendar as CalendarIcon, CheckCircle2, User as UserIcon } from 'lucide-react';
 import { format } from 'date-fns';
+import { useUserAuth } from '@/contexts/UserAuthContext';
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 // Memoized Success Message Component
-const SuccessMessage = memo(({ t, onReset }) => (
+const SuccessMessage = memo(({ t, onReset, onViewDashboard }) => (
   <div className="min-h-screen pt-20 flex items-center justify-center bg-gradient-to-b from-[#F8E6E9] to-white">
     <Card className="max-w-md w-full mx-4 border-2 border-[#F8E6E9] shadow-xl" data-testid="booking-success">
       <CardContent className="p-8 text-center">
@@ -28,13 +30,24 @@ const SuccessMessage = memo(({ t, onReset }) => (
           {t('booking.bookingSuccess')}
         </h2>
         <p className="text-[#3E3E3E]/70 mb-6">{t('booking.bookingMessage')}</p>
-        <Button 
-          className="bg-gradient-to-r from-[#F4C2C2] to-[#D4AF76] hover:opacity-90 text-white rounded-full px-8" 
-          onClick={onReset} 
-          data-testid="book-another-button"
-        >
-          Book Another Appointment
-        </Button>
+        <div className="flex flex-col gap-3">
+          <Button 
+            className="bg-gradient-to-r from-[#F4C2C2] to-[#D4AF76] hover:opacity-90 text-white rounded-full px-8" 
+            onClick={onViewDashboard}
+            data-testid="view-dashboard-button"
+          >
+            <UserIcon className="w-4 h-4 mr-2" />
+            View My Dashboard
+          </Button>
+          <Button 
+            variant="outline"
+            className="border-2 border-[#8B6F8E] text-[#8B6F8E] hover:bg-[#8B6F8E] hover:text-white rounded-full px-8" 
+            onClick={onReset} 
+            data-testid="book-another-button"
+          >
+            Book Another Appointment
+          </Button>
+        </div>
       </CardContent>
     </Card>
   </div>
@@ -54,6 +67,8 @@ LoadingSpinner.displayName = 'LoadingSpinner';
 
 const BookingPage = () => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useUserAuth();
   const [services, setServices] = useState([]);
   const [artists, setArtists] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -70,6 +85,17 @@ const BookingPage = () => {
     customer_phone: '',
     notes: '',
   });
+
+  // Auto-fill user info if authenticated
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      setFormData(prev => ({
+        ...prev,
+        customer_name: user.name || prev.customer_name,
+        customer_email: user.email || prev.customer_email,
+      }));
+    }
+  }, [isAuthenticated, user]);
 
   // Memoized callback for fetching data
   const fetchData = useCallback(async () => {
@@ -144,7 +170,10 @@ const BookingPage = () => {
         appointment_date: format(formData.appointment_date, 'yyyy-MM-dd'),
       };
 
-      await axios.post(`${API}/appointments`, appointmentData);
+      // CRITICAL FIX: Add withCredentials to link appointment to authenticated user
+      await axios.post(`${API}/appointments`, appointmentData, {
+        withCredentials: true
+      });
 
       setSuccess(true);
       toast.success(t('booking.bookingSuccess'));
@@ -155,8 +184,8 @@ const BookingPage = () => {
         artist_id: '',
         appointment_date: null,
         appointment_time: '',
-        customer_name: '',
-        customer_email: '',
+        customer_name: user?.name || '',
+        customer_email: user?.email || '',
         customer_phone: '',
         notes: '',
       });
@@ -166,17 +195,25 @@ const BookingPage = () => {
     } finally {
       setSubmitting(false);
     }
-  }, [formData, t]);
+  }, [formData, t, user]);
 
   const handleReset = useCallback(() => {
     setSuccess(false);
   }, []);
 
+  const handleViewDashboard = useCallback(() => {
+    if (isAuthenticated) {
+      navigate('/user/dashboard');
+    } else {
+      navigate('/user/login');
+    }
+  }, [isAuthenticated, navigate]);
+
   // Memoized calendar date validator
-  const isDateDisabled = useCallback((date) => date < new Date(), []);
+  const isDateDisabled = useCallback((date) => date < new Date(new Date().setHours(0, 0, 0, 0)), []);
 
   if (loading) return <LoadingSpinner />;
-  if (success) return <SuccessMessage t={t} onReset={handleReset} />;
+  if (success) return <SuccessMessage t={t} onReset={handleReset} onViewDashboard={handleViewDashboard} />;
 
   return (
     <div className="min-h-screen">
@@ -187,6 +224,15 @@ const BookingPage = () => {
             {t('booking.title')}
           </h1>
           <p className="text-base sm:text-lg text-[#3E3E3E]/70 max-w-2xl mx-auto">Schedule your next nail appointment in just a few clicks</p>
+          
+          {/* Login Prompt for non-authenticated users */}
+          {!isAuthenticated && (
+            <div className="mt-6 p-4 bg-[#F4C2C2]/10 border border-[#F4C2C2] rounded-lg max-w-md mx-auto">
+              <p className="text-sm text-[#8B6F8E]">
+                💡 <strong>Tip:</strong> <button onClick={() => navigate('/user/login')} className="underline hover:text-[#F4C2C2]">Login</button> to automatically save your bookings to your dashboard!
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -298,6 +344,7 @@ const BookingPage = () => {
                       placeholder="Your name"
                       data-testid="name-input"
                       required
+                      disabled={isAuthenticated}
                     />
                   </div>
 
@@ -315,6 +362,7 @@ const BookingPage = () => {
                       placeholder="your.email@example.com"
                       data-testid="email-input"
                       required
+                      disabled={isAuthenticated}
                     />
                   </div>
 
