@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,10 +8,17 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Globe } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const UserLogin = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation('common');
   const { isAuthenticated, processSessionId, loginWithGoogle, loginWithEmail, registerWithEmail } = useUserAuth();
   const [processing, setProcessing] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -29,6 +37,16 @@ const UserLogin = () => {
     password: '',
     confirmPassword: ''
   });
+
+  const languages = [
+    { code: 'de', name: 'Deutsch' },
+    { code: 'en', name: 'English' },
+    { code: 'fr', name: 'Français' },
+  ];
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
     // If already authenticated, redirect to dashboard
@@ -128,13 +146,35 @@ const UserLogin = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#F8E6E9] to-white py-12 px-4">
-      <Card className="max-w-md w-full border-2 border-[#F8E6E9] shadow-xl">
+      <Card className="max-w-md w-full border-2 border-[#F8E6E9] shadow-xl relative">
+        {/* Language Switcher */}
+        <div className="absolute top-4 right-4 z-10">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-[#8B6F8E]">
+                <Globe className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {languages.map((lang) => (
+                <DropdownMenuItem
+                  key={lang.code}
+                  onClick={() => changeLanguage(lang.code)}
+                  className={i18n.language === lang.code ? 'bg-[#F8E6E9]' : ''}
+                >
+                  {lang.name}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
         <CardContent className="p-8">
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold text-[#8B6F8E] mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Welcome Back
+              {t('auth.welcomeBack')}
             </h1>
-            <p className="text-gray-600">Sign in to manage your appointments</p>
+            <p className="text-gray-600">{t('auth.loginSubtitle')}</p>
           </div>
 
           {error && (
@@ -145,19 +185,19 @@ const UserLogin = () => {
 
           <Tabs defaultValue="login" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="login">Login</TabsTrigger>
-              <TabsTrigger value="register">Register</TabsTrigger>
+              <TabsTrigger value="login">{t('auth.login')}</TabsTrigger>
+              <TabsTrigger value="register">{t('auth.register')}</TabsTrigger>
             </TabsList>
 
             {/* Login Tab */}
             <TabsContent value="login">
               <form onSubmit={handleLogin} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="login-email">Email</Label>
+                  <Label htmlFor="login-email">{t('auth.email')}</Label>
                   <Input
                     id="login-email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder={t('auth.emailPlaceholder')}
                     value={loginForm.email}
                     onChange={(e) => setLoginForm({ ...loginForm, email: e.target.value })}
                     required
@@ -166,12 +206,12 @@ const UserLogin = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="login-password">Password</Label>
+                  <Label htmlFor="login-password">{t('auth.password')}</Label>
                   <div className="relative">
                     <Input
                       id="login-password"
                       type={showPassword ? 'text' : 'password'}
-                      placeholder="••••••••"
+                      placeholder={t('auth.passwordPlaceholder')}
                       value={loginForm.password}
                       onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
                       required
@@ -193,7 +233,7 @@ const UserLogin = () => {
                   className="w-full bg-gradient-to-r from-[#F4C2C2] to-[#D4AF76] hover:opacity-90 text-white rounded-full py-6"
                   data-testid="login-submit-button"
                 >
-                  {processing ? 'Logging in...' : 'Login'}
+                  {processing ? `${t('auth.loginButton')}...` : t('auth.loginButton')}
                 </Button>
               </form>
             </TabsContent>
@@ -202,11 +242,11 @@ const UserLogin = () => {
             <TabsContent value="register">
               <form onSubmit={handleRegister} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="register-name">Full Name</Label>
+                  <Label htmlFor="register-name">{t('auth.name')}</Label>
                   <Input
                     id="register-name"
                     type="text"
-                    placeholder="John Doe"
+                    placeholder={t('auth.namePlaceholder')}
                     value={registerForm.name}
                     onChange={(e) => setRegisterForm({ ...registerForm, name: e.target.value })}
                     required
@@ -215,11 +255,11 @@ const UserLogin = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="register-email">Email</Label>
+                  <Label htmlFor="register-email">{t('auth.email')}</Label>
                   <Input
                     id="register-email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder={t('auth.emailPlaceholder')}
                     value={registerForm.email}
                     onChange={(e) => setRegisterForm({ ...registerForm, email: e.target.value })}
                     required
@@ -228,11 +268,11 @@ const UserLogin = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="register-password">Password</Label>
+                  <Label htmlFor="register-password">{t('auth.password')}</Label>
                   <Input
                     id="register-password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="At least 6 characters"
+                    placeholder={t('auth.passwordPlaceholder')}
                     value={registerForm.password}
                     onChange={(e) => setRegisterForm({ ...registerForm, password: e.target.value })}
                     required
@@ -242,11 +282,11 @@ const UserLogin = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="register-confirm-password">Confirm Password</Label>
+                  <Label htmlFor="register-confirm-password">{t('auth.password')}</Label>
                   <Input
                     id="register-confirm-password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Repeat password"
+                    placeholder={t('auth.passwordPlaceholder')}
                     value={registerForm.confirmPassword}
                     onChange={(e) => setRegisterForm({ ...registerForm, confirmPassword: e.target.value })}
                     required
@@ -261,7 +301,7 @@ const UserLogin = () => {
                   className="w-full bg-gradient-to-r from-[#F4C2C2] to-[#D4AF76] hover:opacity-90 text-white rounded-full py-6"
                   data-testid="register-submit-button"
                 >
-                  {processing ? 'Creating account...' : 'Create Account'}
+                  {processing ? `${t('auth.registerButton')}...` : t('auth.registerButton')}
                 </Button>
               </form>
             </TabsContent>
@@ -270,7 +310,7 @@ const UserLogin = () => {
           <div className="relative my-6">
             <Separator />
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-sm text-gray-500">
-              OR
+              {t('auth.or')}
             </span>
           </div>
 
@@ -299,12 +339,8 @@ const UserLogin = () => {
                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
               />
             </svg>
-            Continue with Google
+            {t('auth.continueWithGoogle')}
           </Button>
-
-          <div className="mt-6 text-center text-sm text-gray-600">
-            <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
-          </div>
         </CardContent>
       </Card>
     </div>
