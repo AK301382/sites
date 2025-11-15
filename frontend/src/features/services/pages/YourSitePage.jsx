@@ -1,11 +1,13 @@
 import React, { useState, useMemo } from 'react';
-import { Sparkles, Crown, Eye, Rocket, Zap, Star, ChevronDown } from 'lucide-react';
+import { Sparkles, Crown, Eye, Rocket, Zap, Star, ChevronDown, Search, Filter } from 'lucide-react';
 import { Button } from '../../../components/ui/button';
 
 const YourSitePage = () => {
-  const [activeSection, setActiveSection] = useState('free');
+  const [activeSection, setActiveSection] = useState('all');
   const [freeDisplayCount, setFreeDisplayCount] = useState(16);
   const [premiumDisplayCount, setPremiumDisplayCount] = useState(12);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterType, setFilterType] = useState('all'); // 'all', 'free', 'premium'
 
   // All images are now local - no URL optimization needed
 
