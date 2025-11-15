@@ -329,32 +329,16 @@ const YourSitePage = () => {
               </div>
             </div>
             
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                data-testid="free-templates-btn"
-                className={`px-8 py-6 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2 ${
-                  activeSection === 'free' 
-                    ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white' 
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-                onClick={() => setActiveSection('free')}
-              >
-                <Sparkles className="w-5 h-5" />
-                Free Templates
-              </Button>
-              
-              <Button 
-                data-testid="premium-templates-btn"
-                className={`px-8 py-6 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2 ${
-                  activeSection === 'premium' 
-                    ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white' 
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-                onClick={() => setActiveSection('premium')}
-              >
-                <Crown className="w-5 h-5" />
-                Premium Templates
-              </Button>
+            <div className="mt-10 flex items-center justify-center gap-4 text-lg font-bold text-gray-700 dark:text-gray-300">
+              <div className="flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 px-6 py-3 rounded-xl">
+                <Sparkles className="w-5 h-5 text-blue-600 dark:text-cyan-400" />
+                <span>40 Free Templates</span>
+              </div>
+              <span className="text-2xl">+</span>
+              <div className="flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900/30 px-6 py-3 rounded-xl">
+                <Crown className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                <span>20 Premium Templates</span>
+              </div>
             </div>
           </div>
         </div>
