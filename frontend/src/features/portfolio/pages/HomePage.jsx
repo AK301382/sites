@@ -6,7 +6,7 @@ import TechStack from '../../../components/common/TechStack';
 import CaseStudies from '../components/CaseStudies';
 import Process from '../../../components/common/Process';
 import Testimonials from '../../../components/common/Testimonials';
-import Blog from '../../blog/components/Blog';
+// Removed Blog import
 import ContactCTA from '../../contact/components/ContactCTA';
 
 const HomePage = () => {
