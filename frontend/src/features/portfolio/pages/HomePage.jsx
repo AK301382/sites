@@ -24,7 +24,7 @@ const HomePage = () => {
       <Process />
       <Testimonials />
       {/* Removed Blog component */}
-      <ContactCTA />
+      {/* Removed ContactCTA component */}
     </>
   );
 };
