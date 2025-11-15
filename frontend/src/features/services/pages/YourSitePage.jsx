@@ -360,8 +360,147 @@ const YourSitePage = () => {
         </div>
       </section>
 
+      {/* Search and Filter Section */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-b border-gray-200 dark:border-gray-700">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            {/* Search Bar */}
+            <div className="relative w-full md:w-2/3 lg:w-1/2">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="text"
+                data-testid="template-search-input"
+                placeholder="Search templates (e.g., restaurant, salon, medical...)"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 text-base border-2 border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white transition-all shadow-sm hover:shadow-md"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  data-testid="clear-search-btn"
+                >
+                  <span className="text-xl">×</span>
+                </button>
+              )}
+            </div>
+
+            {/* Filter Buttons */}
+            <div className="flex gap-2 w-full md:w-auto">
+              <Button
+                data-testid="filter-all-btn"
+                onClick={() => setFilterType('all')}
+                className={`flex-1 md:flex-none px-6 py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+                  filterType === 'all'
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400'
+                }`}
+              >
+                <Filter className="w-4 h-4" />
+                All
+              </Button>
+              <Button
+                data-testid="filter-free-btn"
+                onClick={() => setFilterType('free')}
+                className={`flex-1 md:flex-none px-6 py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+                  filterType === 'free'
+                    ? 'bg-gradient-to-r from-green-600 to-teal-600 text-white shadow-lg'
+                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-300 dark:border-gray-600 hover:border-green-500 dark:hover:border-green-400'
+                }`}
+              >
+                <Sparkles className="w-4 h-4" />
+                Free
+              </Button>
+              <Button
+                data-testid="filter-premium-btn"
+                onClick={() => setFilterType('premium')}
+                className={`flex-1 md:flex-none px-6 py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+                  filterType === 'premium'
+                    ? 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg'
+                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-2 border-gray-300 dark:border-gray-600 hover:border-yellow-500 dark:hover:border-yellow-400'
+                }`}
+              >
+                <Crown className="w-4 h-4" />
+                Premium
+              </Button>
+            </div>
+          </div>
+
+          {/* Search Results Counter */}
+          {searchQuery && (
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Found <span className="font-bold text-blue-600 dark:text-cyan-400">{allTemplates.length}</span> templates matching "{searchQuery}"
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* All Templates Section (Combined View) */}
+      {filterType === 'all' && (
+        <section id="all-templates" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
+          <div className="container mx-auto max-w-7xl">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-600 dark:text-cyan-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                <Sparkles className="w-4 h-4" />
+                All Templates
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+                Browse All Templates
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                Explore our complete collection of free and premium templates
+              </p>
+            </div>
+            
+            {allTemplates.length > 0 ? (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {visibleAllTemplates.map((template, index) => {
+                    const isPremium = premiumTemplates.some(t => t.name === template.name);
+                    return <TemplateCard key={index} template={template} isPremium={isPremium} />;
+                  })}
+                </div>
+
+                {/* Load More Button */}
+                {visibleAllTemplates.length < allTemplates.length && (
+                  <div className="text-center mt-12">
+                    <Button
+                      onClick={() => {
+                        setFreeDisplayCount(prev => prev + 16);
+                        setPremiumDisplayCount(prev => prev + 16);
+                      }}
+                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2 mx-auto"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                      Load More Templates ({allTemplates.length - visibleAllTemplates.length} remaining)
+                    </Button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-center py-20">
+                <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No templates found</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">Try adjusting your search terms</p>
+                <Button
+                  onClick={() => setSearchQuery('')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  Clear Search
+                </Button>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Free Templates Section */}
-      {activeSection === 'free' && (
+      {filterType === 'free' && (
         <section id="free-templates" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
           <div className="container mx-auto max-w-7xl">
             <div className="text-center mb-16">
