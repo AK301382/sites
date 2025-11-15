@@ -7,8 +7,7 @@ const YourSitePage = () => {
   const [freeDisplayCount, setFreeDisplayCount] = useState(16);
   const [premiumDisplayCount, setPremiumDisplayCount] = useState(12);
 
-  // Utility function to optimize Unsplash image URLs
-  // Function removed - all images are now local
+  // All images are now local - no URL optimization needed
 
   // Free Templates - 40 businesses from different fields (now using local images)
   const freeTemplates = [
