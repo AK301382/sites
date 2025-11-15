@@ -208,7 +208,7 @@ const YourSitePage = () => {
       {/* Image Section with Lazy Loading */}
       <div className="relative h-48 overflow-hidden bg-gray-200 dark:bg-gray-700">
         <img 
-          src={optimizeImageUrl(template.image)}
+          src={template.image}
           alt={template.name}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
           loading="lazy"
