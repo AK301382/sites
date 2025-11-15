@@ -516,21 +516,37 @@ const YourSitePage = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {visibleFreeTemplates.map((template, index) => (
-                <TemplateCard key={index} template={template} isPremium={false} />
-              ))}
-            </div>
+            {filteredFreeTemplates.length > 0 ? (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {visibleFreeTemplates.map((template, index) => (
+                    <TemplateCard key={index} template={template} isPremium={false} />
+                  ))}
+                </div>
 
-            {/* Load More Button */}
-            {freeDisplayCount < freeTemplates.length && (
-              <div className="text-center mt-12">
+                {/* Load More Button */}
+                {freeDisplayCount < filteredFreeTemplates.length && (
+                  <div className="text-center mt-12">
+                    <Button
+                      onClick={() => setFreeDisplayCount(prev => Math.min(prev + 16, filteredFreeTemplates.length))}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2 mx-auto"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                      Load More Templates ({filteredFreeTemplates.length - freeDisplayCount} remaining)
+                    </Button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="text-center py-20">
+                <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No free templates found</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">Try adjusting your search terms</p>
                 <Button
-                  onClick={() => setFreeDisplayCount(prev => Math.min(prev + 16, freeTemplates.length))}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2 mx-auto"
+                  onClick={() => setSearchQuery('')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
                 >
-                  <ChevronDown className="w-5 h-5" />
-                  Load More Templates ({freeTemplates.length - freeDisplayCount} remaining)
+                  Clear Search
                 </Button>
               </div>
             )}
