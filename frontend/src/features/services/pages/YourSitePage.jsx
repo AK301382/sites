@@ -179,14 +179,50 @@ const YourSitePage = () => {
     }
   ];
 
+  // Smart search function
+  const searchTemplates = (templates, query) => {
+    if (!query.trim()) return templates;
+    
+    const searchTerm = query.toLowerCase().trim();
+    return templates.filter(template => {
+      const name = template.name.toLowerCase();
+      const category = template.category.toLowerCase();
+      const features = template.features ? template.features.join(' ').toLowerCase() : '';
+      
+      return name.includes(searchTerm) || 
+             category.includes(searchTerm) || 
+             features.includes(searchTerm);
+    });
+  };
+
+  // Memoize filtered templates based on search and filter type
+  const filteredFreeTemplates = useMemo(() => {
+    return searchTemplates(freeTemplates, searchQuery);
+  }, [searchQuery]);
+
+  const filteredPremiumTemplates = useMemo(() => {
+    return searchTemplates(premiumTemplates, searchQuery);
+  }, [searchQuery]);
+
   // Memoize visible templates
   const visibleFreeTemplates = useMemo(() => {
-    return freeTemplates.slice(0, freeDisplayCount);
-  }, [freeDisplayCount]);
+    return filteredFreeTemplates.slice(0, freeDisplayCount);
+  }, [filteredFreeTemplates, freeDisplayCount]);
 
   const visiblePremiumTemplates = useMemo(() => {
-    return premiumTemplates.slice(0, premiumDisplayCount);
-  }, [premiumDisplayCount]);
+    return filteredPremiumTemplates.slice(0, premiumDisplayCount);
+  }, [filteredPremiumTemplates, premiumDisplayCount]);
+
+  // Combined templates for "All" view
+  const allTemplates = useMemo(() => {
+    if (filterType === 'free') return filteredFreeTemplates;
+    if (filterType === 'premium') return filteredPremiumTemplates;
+    return [...filteredFreeTemplates, ...filteredPremiumTemplates];
+  }, [filterType, filteredFreeTemplates, filteredPremiumTemplates]);
+
+  const visibleAllTemplates = useMemo(() => {
+    return allTemplates.slice(0, Math.max(freeDisplayCount, premiumDisplayCount));
+  }, [allTemplates, freeDisplayCount, premiumDisplayCount]);
 
   const TemplateCard = ({ template, isPremium = false }) => (
     <div 
