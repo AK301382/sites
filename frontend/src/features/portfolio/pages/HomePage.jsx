@@ -7,7 +7,7 @@ import CaseStudies from '../components/CaseStudies';
 import Process from '../../../components/common/Process';
 import Testimonials from '../../../components/common/Testimonials';
 // Removed Blog import
-import ContactCTA from '../../contact/components/ContactCTA';
+// Removed ContactCTA import
 
 const HomePage = () => {
   return (
