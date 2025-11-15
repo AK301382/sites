@@ -23,7 +23,7 @@ const HomePage = () => {
       <CaseStudies />
       <Process />
       <Testimonials />
-      {/* Removed Blog component */}
+ 
       {/* Removed ContactCTA component */}
     </>
   );
