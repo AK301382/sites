@@ -6,8 +6,6 @@ import TechStack from '../../../components/common/TechStack';
 import CaseStudies from '../components/CaseStudies';
 import Process from '../../../components/common/Process';
 import Testimonials from '../../../components/common/Testimonials';
- 
- 
 
 const HomePage = () => {
   return (
@@ -23,8 +21,6 @@ const HomePage = () => {
       <CaseStudies />
       <Process />
       <Testimonials />
- 
- 
     </>
   );
 };
