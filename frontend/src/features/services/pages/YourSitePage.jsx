@@ -8,11 +8,7 @@ const YourSitePage = () => {
   const [premiumDisplayCount, setPremiumDisplayCount] = useState(12);
 
   // Utility function to optimize Unsplash image URLs
-  const optimizeImageUrl = (url) => {
-    if (!url) return url;
-    // Reduce quality from 85 to 40 and add width constraint
-    return url.replace('q=85', 'q=40').replace(/&ixlib/, '&w=400&h=300&fit=crop&ixlib');
-  };
+  // Function removed - all images are now local
 
   // Free Templates - 40 businesses from different fields (now using local images)
   const freeTemplates = [
