@@ -1,0 +1,112 @@
+from fastapi import FastAPI, APIRouter
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
+from middleware.security import SecurityHeadersMiddleware
+import logging
+
+# Import configuration
+from config.settings import settings
+from config.logging_config import configure_logging, get_logger
+
+# Configure structured logging
+configure_logging(settings.LOG_LEVEL)
+
+# Initialize Sentry if DSN is provided (optional)
+try:
+    if settings.SENTRY_DSN:
+        import sentry_sdk
+        from sentry_sdk.integrations.fastapi import FastApiIntegration
+        
+        sentry_sdk.init(
+            dsn=settings.SENTRY_DSN,
+            environment=settings.ENVIRONMENT,
+            traces_sample_rate=1.0 if settings.DEBUG else 0.1,
+            integrations=[FastApiIntegration()],
+            send_default_pii=False,  # Don't send personally identifiable information
+            before_send=lambda event, hint: event if settings.ENVIRONMENT != "development" else None,
+        )
+        logging.info("✅ Sentry error tracking initialized")
+except ImportError:
+    logging.info("ℹ️  Sentry SDK not installed - error tracking disabled")
+
+# Import database
+from database import close_db_connection
+
+# Import routes
+from routes import contact, newsletter, portfolio, blog, admin_auth, admin_dashboard, admin_contacts, admin_newsletter, services
+
+# Get structured logger
+logger = get_logger(__name__)
+
+# Create the main app
+app = FastAPI(
+    title=settings.APP_NAME,
+    description="Professional agency backend API for Kawesh with customer management",
+    version=settings.APP_VERSION,
+    debug=settings.DEBUG
+)
+
+# Create a router with the /api prefix
+api_router = APIRouter(prefix="/api")
+
+# Health check endpoint
+@api_router.get("/")
+async def root():
+    return {
+        "message": "Kawesh API is running",
+        "version": "1.0.0",
+        "status": "healthy"
+    }
+
+@api_router.get("/health")
+async def health_check():
+    return {
+        "status": "healthy",
+        "message": "All systems operational"
+    }
+
+# Include all route modules
+api_router.include_router(contact.router)
+api_router.include_router(newsletter.router)
+api_router.include_router(portfolio.router)
+api_router.include_router(blog.router)
+api_router.include_router(services.router)
+
+# Include admin route modules
+api_router.include_router(admin_auth.router)
+api_router.include_router(admin_dashboard.router)
+api_router.include_router(admin_contacts.router)
+api_router.include_router(admin_newsletter.router)
+
+# Include the API router in the main app
+app.include_router(api_router)
+
+# Add middleware (order matters - first added is executed last)
+# 1. Security headers (outermost)
+app.add_middleware(SecurityHeadersMiddleware)
+
+# 2. Response compression
+app.add_middleware(GZipMiddleware, minimum_size=1000)
+
+# 3. CORS middleware (innermost)
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=settings.cors_origins_list,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Startup event
+@app.on_event("startup")
+async def startup_event():
+    logger.info("🚀 Kawesh API starting up...")
+    logger.info("✅ Database connection established")
+    logger.info("✅ All routes registered")
+
+# Shutdown event
+@app.on_event("shutdown")
+async def shutdown_event():
+    logger.info("🔴 Shutting down Kawesh API...")
+    await close_db_connection()
+    logger.info("✅ Database connection closed")
