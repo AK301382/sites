@@ -1,0 +1,132 @@
+{
+  "admin": {
+    "login": {
+      "title": "Connexion administrateur",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "loginButton": "Se connecter",
+      "error": "Nom d'utilisateur ou mot de passe invalide"
+    },
+    "dashboard": {
+      "title": "Tableau de bord administrateur",
+      "welcome": "Bienvenue, Admin",
+      "overview": "Vue d'ensemble",
+      "appointments": "Rendez-vous",
+      "services": "Services",
+      "artists": "Artistes",
+      "gallery": "Galerie",
+      "messages": "Messages",
+      "settings": "Paramètres",
+      "logout": "Déconnexion"
+    },
+    "stats": {
+      "totalAppointments": "Total des rendez-vous",
+      "pendingAppts": "En attente",
+      "totalRevenue": "Revenu total",
+      "activeServices": "Services actifs",
+      "totalArtists": "Total des artistes",
+      "newMessages": "Nouveaux messages"
+    },
+    "appointments": {
+      "title": "Gérer les rendez-vous",
+      "upcoming": "À venir",
+      "pending": "En attente",
+      "confirmed": "Confirmé",
+      "completed": "Terminé",
+      "cancelled": "Annulé",
+      "all": "Tous",
+      "clientName": "Nom du client",
+      "service": "Service",
+      "artist": "Artiste",
+      "date": "Date",
+      "time": "Heure",
+      "status": "Statut",
+      "actions": "Actions",
+      "noAppointments": "Aucun rendez-vous trouvé",
+      "confirmAppt": "Confirmer",
+      "cancelAppt": "Annuler",
+      "completeAppt": "Marquer comme terminé",
+      "deleteAppt": "Supprimer"
+    },
+    "services": {
+      "title": "Gérer les services",
+      "addService": "Ajouter un service",
+      "editService": "Modifier le service",
+      "name": "Nom",
+      "description": "Description",
+      "category": "Catégorie",
+      "price": "Prix",
+      "duration": "Durée",
+      "active": "Actif",
+      "actions": "Actions",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "noServices": "Aucun service trouvé"
+    },
+    "artists": {
+      "title": "Gérer les artistes",
+      "addArtist": "Ajouter un artiste",
+      "editArtist": "Modifier l'artiste",
+      "name": "Nom",
+      "specialties": "Spécialités",
+      "experience": "Années d'expérience",
+      "available": "Disponible",
+      "actions": "Actions",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "noArtists": "Aucun artiste trouvé"
+    },
+    "gallery": {
+      "title": "Gérer la galerie",
+      "addImage": "Ajouter une image",
+      "style": "Style",
+      "category": "Catégorie",
+      "uploadImage": "Télécharger l'image",
+      "delete": "Supprimer",
+      "noImages": "Aucune image trouvée"
+    },
+    "messages": {
+      "title": "Messages des clients",
+      "from": "De",
+      "subject": "Sujet",
+      "date": "Date",
+      "read": "Lu",
+      "unread": "Non lu",
+      "reply": "Répondre",
+      "delete": "Supprimer",
+      "noMessages": "Aucun message"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "general": "Général",
+      "salonName": "Nom du salon",
+      "email": "Email",
+      "phone": "Téléphone",
+      "address": "Adresse",
+      "hours": "Heures d'ouverture",
+      "save": "Enregistrer les modifications",
+      "success": "Paramètres enregistrés avec succès",
+      "error": "Échec de l'enregistrement des paramètres"
+    },
+    "common": {
+      "search": "Rechercher...",
+      "filter": "Filtrer",
+      "actions": "Actions",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "confirm": "Confirmer",
+      "yes": "Oui",
+      "no": "Non",
+      "loading": "Chargement...",
+      "noData": "Aucune donnée disponible",
+      "success": "Succès",
+      "error": "Erreur"
+    }
+  }
+}
